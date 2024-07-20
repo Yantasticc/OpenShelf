@@ -2,7 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import cors from "cors"
 import bodyParser from "body-parser"
-
+import { apis as quotes } from './constants/api.js'
 import dotenv from "dotenv"
 dotenv.config();
 
@@ -23,12 +23,16 @@ const connect = async () => {
     }
 }
 
+//  QUOTE ROUTE
+app.use('/quote', (req, res) => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    res.json(quotes[randomIndex]);
+});
+ 
 // AUTH ROUTES
 import authRouter from './router/userRouter.js'
-// import itemRouter from "./Warehouse.js"
 
 app.use('/authentication', authRouter);
-// app.use('/warehouse', itemRouter);
 
 // CONNECT TO BACKEND
 app.listen(PORT, () => {

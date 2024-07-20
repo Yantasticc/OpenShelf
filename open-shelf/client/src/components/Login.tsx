@@ -29,6 +29,7 @@ export default function Login() {
             })
             if(res.status === 200) {
                 login();
+                localStorage.setItem('username', data.username); 
                 navigate('/home');
                 alert('login successful')
             } else {
