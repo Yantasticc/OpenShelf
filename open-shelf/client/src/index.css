@@ -2,4 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
+body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none;
+}
 
+/* Hide scrollbar for IE, Edge, and Firefox */
+body, * {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Ensure body doesn't scroll */
+body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+/* The app container should take the full screen */
+.app-container {
+    flex: 1;
+}
+
+/* The content container will handle the scrolling */
+.content-container {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+}
+
+/* Enable scrollbar only for Sidebar */
+.sidebar-scrollable {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+    scrollbar-width: thin; /* For Firefox */
+}
+
+/* Optional: Styling for the scrollbar */
+.sidebar-scrollable::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebar-scrollable::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+.sidebar-scrollable::-webkit-scrollbar-track {
+    background: transparent;
+}
