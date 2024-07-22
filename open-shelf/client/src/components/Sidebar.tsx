@@ -1,6 +1,27 @@
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Sidebar = () => {
+const categories = [
+  'All Books', 'Biography', 'Children\'s Books', 'Classic Literature', 'Cookbooks', 
+  'Economics', 'Fantasy', 'Fiction', 'Graphic Novels', 'Health & Wellness', 
+  'Historical Fiction', 'Humor', 'Mystery', 'Non-Fiction', 'Philosophy', 
+  'Poetry', 'Political Science', 'Religion & Spirituality', 'Romance', 
+  'Science & Nature', 'Science Fiction', 'Self-Help', 'Thriller', 'Travel', 
+  'True Crime', 'Young Adult'
+];
+
+interface SidebarProps {
+  onCategorySelect: (category: string) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ onCategorySelect }) => {
+  const [selectedCategory, setSelectedCategory] = useState('All Books');
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    onCategorySelect(category);
+  };
+
   return (
     <div className="w-full p-5 text-center rounded-lg shadow-lg bg-white bg-opacity-20 backdrop-blur-lg flex flex-col h-full max-h-[calc(78vh-60px)]">
       <h2 className="text-2xl font-bold mb-4 text-white">Categories</h2>
@@ -11,84 +32,17 @@ const Sidebar = () => {
           </Link>
         </button>
         <ul className="space-y-2">
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            All Books
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Biography
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Children's Books
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Classic Literature
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Cookbooks
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Economics
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Fantasy
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Fiction
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Graphic Novels
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Health & Wellness
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Historical Fiction
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Humor
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Mystery
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Non-Fiction
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Philosophy
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Poetry
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Political Science
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Religion & Spirituality
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Romance
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Science & Nature
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Science Fiction
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Self-Help
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Thriller
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Travel
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            True Crime
-          </li>
-          <li className="bg-white bg-opacity-50 mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow">
-            Young Adult
-          </li>
+          {categories.map(category => (
+            <li
+              key={category}
+              className={`mt-3 mb-5 p-3 cursor-pointer rounded-lg shadow ${
+                selectedCategory === category ? 'bg-blue-500 text-white' : 'bg-white bg-opacity-50'
+              }`}
+              onClick={() => handleCategorySelect(category)}
+            >
+              {category}
+            </li>
+          ))}
         </ul>
       </div>
     </div>

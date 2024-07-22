@@ -33,6 +33,7 @@ const AddBook = () => {
         bookSource: formData.bookSource,
       });
       alert('Book created successfully')
+      console.log(res.data)
       navigate('/home');
     } catch (error:any) {
       console.log(error)

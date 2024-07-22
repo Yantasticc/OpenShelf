@@ -1,16 +1,9 @@
-import { AiTwotoneDislike, AiTwotoneLike } from "react-icons/ai";
+// ItemCard.tsx
 import React from 'react';
+import { AiTwotoneDislike, AiTwotoneLike } from "react-icons/ai";
+import { Book } from '../constants/types';
 
-interface ItemCardProps {
-  bookName: string;
-  bookAuthor: string;
-  bookCover: string;
-  likes: number;
-  dislikes: number;
-  bookSource: string;
-}
-
-const ItemCard: React.FC<ItemCardProps> = ({ bookName, bookAuthor, bookCover, likes, dislikes, bookSource }) => {
+const ItemCard: React.FC<Book> = ({ _id, bookName, bookAuthor, bookCover, likes, dislikes, bookSource, bookCategory }) => {
   return (
     <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-lg shadow-lg overflow-hidden text-white p-4">
       {/* Book Cover */}
@@ -31,10 +24,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ bookName, bookAuthor, bookCover, li
               <AiTwotoneDislike className="size-7" />
               <span>{dislikes}</span>
             </div>
-            <button
-              className="bg-white bg-opacity-50 px-8 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-              onClick={() => window.open(bookSource, '_blank')}
-            >
+            <button className="bg-white bg-opacity-50 px-8 py-2 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-green-500">
               Read
             </button>
             <div className="flex items-center space-x-2">
