@@ -23,7 +23,7 @@ const Featured = () => {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="relative flex-1 flex flex-col justify-center text-center p-4 bg-black bg-opacity-50 mt-8">
+      <div className="relative flex-1 flex flex-col justify-center text-center p-4 bg-black bg-opacity-50 mt-1">
         <div className="text-3xl font-bold text-white mb-2">{books[currentIndex].Name}</div>
         <div className="text-2xl font-medium text-gray-200 mb-2">{books[currentIndex].author}</div>
         <p className="text-lg text-gray-300">{books[currentIndex].description}</p>

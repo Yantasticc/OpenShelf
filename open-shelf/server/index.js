@@ -31,8 +31,10 @@ app.use('/quote', (req, res) => {
  
 // AUTH ROUTES
 import authRouter from './router/userRouter.js'
+import bookRouter from './router/bookRouter.js'
 
 app.use('/authentication', authRouter);
+app.use('/book', bookRouter);
 
 // CONNECT TO BACKEND
 app.listen(PORT, () => {
